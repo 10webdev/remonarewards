@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remona Job Hunters K&QOTH</title>
+    <link rel="icon" href="icon.webp">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .logo>img {
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px cyan;
+            cursor: pointer;
+        }
+
+        .logo>img:hover {
+            box-shadow: 0 0 30px whitesmoke;
+            transition: 0.5s;
+        }
+
+        .ttl,
+        .sttl {
+            font-weight: bold;
+            text-shadow: 0 0 5px cyan, 0 0 10px cyan, 0 0 15px cyan;
+            min-height: 50px;
+        }
+
+        .ttl {
+            font-size: 1.2rem;
+        }
+
+        .sttl {
+            font-size: 1rem;
+        }
+
+        hr {
+            width: 30%;
+            height: 2px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px whitesmoke;
+            background-color: cyan;
+            border: none;
+        }
+
+        .result {
+            font-size: 80px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-top: 0;
+            text-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 30px cyan;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .red-number {
+            color: red;
+            text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+        }
+
+        .btn {
+            padding: 0 20px;
+            font-size: 3rem;
+            font-weight: bolder;
+            border: 10px solid whitesmoke;
+            cursor: pointer;
+            color: whitesmoke;
+            background: cyan;
+            border-radius: 15px;
+            box-shadow: 0 0 10px cyan;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: whitesmoke;
+            box-shadow: 0 0 20px whitesmoke;
+            border: 10px solid cyan;
+            color: darkcyan;
+        }
+
+        .btn:active {
+            background: cyan;
+            box-shadow: 0 0 10px cyan;
+            border: 10px solid whitesmoke;
+            color: whitesmoke;
+        }
+
+        #dateTime {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px cyan;
+        }
+
+        #history {
+            margin-top: 40px;
+            width: 80%;
+            text-align: left;
+        }
+
+        #history h2 {
+            text-shadow: 0 0 5px cyan;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        #historyList {
+            list-style: none;
+            padding: 0;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 0 10px cyan;
+            border-radius: 15px;
+        }
+
+        #historyList li {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-bottom: 5px solid cyan;
+            box-shadow: 0 0 -10px cyan;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="rjh.webp" alt="Logo">
+    </div>
+
+    <div class="ttl">
+        <h1>Remona Job Hunters Rewards</h1>
+    </div>
+
+    <hr>
+
+    <div class="sttl">
+        <h1>Random Member Selector</h1>
+    </div>
+
+    <div class="result" id="result">Press SELECT!</div>
+    <button class="btn" onclick="spin()">SELECT</button>
+
+    <div id="dateTime"></div>
+
+    <div id="history">
+        <h2>Results History</h2>
+        <ul id="historyList"></ul>
+    </div>
+
+    <script>
+        function generateNumbers() {
+            let numbers = [];
+            for (let i = 1; i <= 250000; i++) {
+                numbers.push(i.toString().padStart(4, '0'));
+            }
+            return numbers;
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const dateTimeDiv = document.getElementById("dateTime");
+            dateTimeDiv.innerHTML = `<strong>Today's Date:</strong> ${now.toLocaleDateString()}<br><strong>Current Time:</strong> ${now.toLocaleTimeString()}`;
+        }
+
+        const numbers = generateNumbers();
+        let resultDisplay = document.getElementById("result");
+        const historyList = document.getElementById("historyList");
+
+        function spin() {
+            resultDisplay.style.opacity = 0;
+
+            setTimeout(() => {
+                let randomIndex = Math.floor(Math.random() * numbers.length);
+                let randomNumber = numbers[randomIndex];
+
+                let resultHTML = randomNumber;
+                if (randomNumber === "0010") {
+                    resultHTML = `<span class="red-number">${randomNumber}</span>`;
+                }
+
+                resultDisplay.innerHTML = resultHTML;
+                resultDisplay.style.opacity = 1;
+
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `${resultHTML} at ${new Date().toLocaleTimeString()}`;
+                historyList.prepend(listItem);
+            }, 500);
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+
+</html>

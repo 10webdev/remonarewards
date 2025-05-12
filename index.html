@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remona Job Hunters Rewards</title>
+    <link rel="icon" href="icon.webp">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: fit-content;
+            background-color: black;
+            color: whitesmoke;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px 0;
+            padding: 0;
+        }
+
+        .logo {
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .logo > img {
+            width: 250px;
+            border: 0;
+            border-radius: 15px;
+            box-shadow: 0 0 20px cyan;
+            cursor: pointer;
+        }
+
+        .logo > img:hover {
+            box-shadow: 0 0 30px whitesmoke;
+            transition: 0.5s;
+        }
+
+        .ttl {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-height: 50px;
+            text-shadow: 0 0 5px cyan, 0 0 10px cyan, 0 0 15px cyan;
+        }
+
+        hr {
+            margin: 0;
+            width: 30%;
+            height: 2px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px whitesmoke;
+            background-color: cyan;
+        }
+
+        .sttl {
+            margin: 0 0 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            min-height: 50px;
+            text-shadow: 0 0 5px cyan, 0 0 10px cyan, 0 0 15px cyan;
+        }
+
+        .result {
+            font-size: 80px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-top: 0;
+            text-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 30px cyan;
+            opacity: 0;
+            transition: opacity 10s ease-in-out;
+        }
+
+        .btn {
+            padding: 0 20px;
+            font-size: 3rem;
+            font-weight: bolder;
+            border: 10px solid whitesmoke;
+            cursor: pointer;
+            color: whitesmoke;
+            background: cyan;
+            border-radius: 15px;
+            box-shadow: 0 0 10px cyan;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: whitesmoke;
+            box-shadow: 0 0 20px whitesmoke;
+            border: 10px solid cyan;
+            color: darkcyan;
+        }
+
+        .btn:active {
+            background: cyan;
+            box-shadow: 0 0 10px cyan;
+            border: 10px solid whitesmoke;
+            color: whitesmoke;
+        }
+
+        a {
+            margin: 20px 0;
+            padding: 0 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 10px solid whitesmoke;
+            cursor: pointer;
+            color: whitesmoke;
+            background: cyan;
+            border-radius: 15px;
+            box-shadow: 0 0 10px cyan;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: whitesmoke;
+            box-shadow: 0 0 20px whitesmoke;
+            border: 10px solid cyan;
+            color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="rjh.webp" alt="Logo">
+    </div>
+
+    <div class="ttl">
+        <h1>Remona Job Hunters Rewards</h1>
+    </div>
+
+    <hr>
+
+    <div class="gname">
+        <h1></h1>
+    </div>
+
+    <div class="sttl">
+        <h2>Random Reward Selector</h2>
+    </div>
+
+    <div class="result" id="result">Prize</div>
+    <button class="btn" onclick="spin()">REVEAL</button>
+
+    <a href="rjhrewards.html">recipient's</a>
+
+    <script>
+        const prizes = ["R5000 Voucher", "R500 Airtime", "R2500 Cash", "R500 Data", "R300 Airtime", "R5000 Cash", "R500 Data", "R500 Airtime", "R2500 Voucher", "R250 Data"];
+        let resultDisplay = document.getElementById("result");
+
+        function spin() {
+            resultDisplay.style.opacity = 0; // Fade out
+
+            setTimeout(() => {
+                let randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
+                resultDisplay.innerText = "" + randomPrize;
+                resultDisplay.style.opacity = 1; // Fade in
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
